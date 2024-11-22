@@ -69,6 +69,7 @@
         # gradle_8
         jdk21
         usbutils
+        python312
       ];
     };
   };
