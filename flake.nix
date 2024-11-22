@@ -28,12 +28,12 @@
       # toolsVersion = "26.1.1";
       # platformToolsVersion = "34.0.5";
       buildToolsVersions = ["34.0.0"];
-      # includeEmulator = false;
+      includeEmulator = true;
       # emulatorVersion = "30.3.4";
       platformVersions = ["34"];
       includeSources = true;
-      # includeSystemImages = false;
-      # systemImageTypes = ["google_apis_playstore"];
+      includeSystemImages = true;
+      systemImageTypes = ["google_apis_playstore"];
       # abiVersions = ["armeabi-v7a" "arm64-v8a"];
       # cmakeVersions = ["3.10.2"];
       includeNDK = true;
