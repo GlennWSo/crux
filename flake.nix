@@ -27,7 +27,7 @@
       # cmdLineToolsVersion = "8.0";
       # toolsVersion = "26.1.1";
       # platformToolsVersion = "34.0.5";
-      # buildToolsVersions = ["34.0.0" "35.0.0"];
+      buildToolsVersions = ["34.0.0"];
       # includeEmulator = false;
       # emulatorVersion = "30.3.4";
       platformVersions = ["34"];
@@ -37,7 +37,7 @@
       # abiVersions = ["armeabi-v7a" "arm64-v8a"];
       # cmakeVersions = ["3.10.2"];
       includeNDK = true;
-      # ndkVersions = ["22.0.7026061"];
+      ndkVersions = ["27.0.12077973"];
       # useGoogleAPIs = false;
       # useGoogleTVAddOns = false;
       # includeExtras = [
@@ -49,7 +49,9 @@
     devShells.x86_64-linux.default = pkgs.mkShell rec {
       ANDROID_HOME = "${android.androidsdk}/libexec/android-sdk";
       ANDROID_NDK_ROOT = "${ANDROID_HOME}/ndk-bundle";
-      # GRADLE_OPTS = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${android.androidsdk}/libexec/android-sdk/build-tools/28.0.3/aapt2";
+      GRADLE_OPTS = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${android.androidsdk}/libexec/android-sdk/build-tools/34.0.0/aapt2";
+      RUSTC = "${toolchain}/bin/rustc";
+      RUST_CARGO = "${toolchain}/bin/cargo";
       buildInputs = with pkgs; [
         cargo-ndk
         cargo-apk
@@ -62,9 +64,11 @@
         trunk
         nodejs
 
-        jdk17
-        usbutils
         (android-studio.withSdk android.androidsdk)
+        ktlint
+        # gradle_8
+        jdk21
+        usbutils
       ];
     };
   };
