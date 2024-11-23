@@ -82,7 +82,7 @@
       echo starts apk on device
         ${adbBin} -s emulator-$1 shell am start -n com.example.counter/com.example.counter.MainActivity
     '';
-    runApk = pkgs.writeShellScriptBin "runapk" ''
+    oneUp = pkgs.writeShellScriptBin "oneup" ''
       ${mkAVD}/bin/mkavd
       port="$(${findPort}/bin/findport)"
       echo port is $port
@@ -98,6 +98,9 @@
 
         echo "dev.bootcomplete property is 1" >&2
         echo "ready" >&2
+        ${installApk}/bin/installapk $port $1
+        delay 2
+        ${startApk}/bin/startapk $port
     '';
     # android = pkgs.androidenv.androidPkgs;
   in {
@@ -117,7 +120,7 @@
         startAVD
         installApk
         startApk
-        runApk
+        oneUp
 
         cargo-ndk
         cargo-apk
